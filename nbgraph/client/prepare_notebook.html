@@ -1,0 +1,16 @@
+<script>
+    {% include 'js/main.js' %}
+</script>
+{% if confirm_load %}
+<div id="nbgraph_confirm_{{container_id}}"></div>
+<script>
+    (function() {
+        if ('nbgraph' in window && 'sigma' in window) {
+            var status = 'nbgraph loaded successfully.';
+        } else {
+            var status = 'nbgraph is undefined, somethind went wrong in loading!';
+        }
+        document.getElementById('nbgraph_confirm_{{container_id}}').innerHTML = status;
+    })();
+</script>
+{% endif %}
