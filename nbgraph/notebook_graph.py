@@ -12,6 +12,9 @@ class NotebookGraph(object):
         self.next_edge_id += 1
         return this_edge_id
 
+    def _repr_html_(self):
+        return renderer.generate_html(self)
+
     def add_edge(self, source, target):
         self.edges.append({
             'id': self._get_next_edge_id(),
@@ -31,5 +34,5 @@ class NotebookGraph(object):
     def as_dict(self):
         return {'nodes': self.nodes, 'edges': self.edges}
 
-    def _repr_html_(self):
-        return renderer.generate_html(self)
+    def show(self, include_scripts=False):
+        return renderer.display_notebook(self, include_scripts)

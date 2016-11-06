@@ -29,7 +29,13 @@ def prepare_notebook(quiet=False):
     return HTML(_prepare_notebook_html(not quiet))
 
 
-def generate_html(graph):
-    return ''.join((
-        _prepare_notebook_html(False),
-        _graph_html(graph)))
+def generate_html(graph, include_scripts=True):
+    contents = list()
+    if include_scripts:
+        contents.append(_prepare_notebook_html(False))
+    contents.append(_graph_html(graph))
+    return ''.join(contents)
+
+
+def display_notebook(graph, include_scripts=True):
+    return HTML(generate_html(graph, include_scripts))
