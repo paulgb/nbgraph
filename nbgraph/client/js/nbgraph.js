@@ -76,9 +76,7 @@ nbgraph.Graph = class {
     }
 
     resetGraph() {
-        if (this.running) {
-            this.sigma.killForceAtlas2();
-        }
+        this.sigma.killForceAtlas2();
         var nodes = this.sigma.graph.nodes();
         for (var i = 0; i < nodes.length; i++) {
             nodes[i].size = 1;
