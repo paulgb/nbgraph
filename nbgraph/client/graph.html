@@ -1,5 +1,13 @@
 <div id="nbgraph_{{container_id}}">
 </div>
 <script>
-    new nbgraph.Graph({{data}}, "nbgraph_{{container_id}}");
+    if (!('nbgraph' in window)) {
+        document.getElementById('nbgraph_{{container_id}}').innerHTML =
+            '<p>Notebook not prepared for showing graphs!\n' +
+            'Call <samp>prepare_notebook()</samp> first:</p><br />\n' +
+            '<pre>from nbgraph.renderer import prepare_notebook\n' +
+            'prepare_notebook()</pre>';
+    } else {
+        new nbgraph.Graph({{data}}, 'nbgraph_{{container_id}}');
+    }
 </script>

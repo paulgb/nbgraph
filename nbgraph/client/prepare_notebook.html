@@ -1,8 +1,8 @@
 <script>
     {% include 'js/main.js' %}
 </script>
-{% if confirm_load %}
 <div id="nbgraph_confirm_{{container_id}}"></div>
+{% if confirm_load %}
 <script>
     (function() {
         if ('nbgraph' in window && 'sigma' in window) {
