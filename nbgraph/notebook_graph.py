@@ -34,5 +34,5 @@ class NotebookGraph(object):
     def as_dict(self):
         return {'nodes': self.nodes, 'edges': self.edges}
 
-    def show(self, include_scripts=False):
-        return renderer.display_notebook(self, include_scripts)
+    def show(self, include_scripts=False, config=None):
+        return renderer.display_notebook(self, include_scripts, config)

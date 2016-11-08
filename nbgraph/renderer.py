@@ -15,10 +15,13 @@ def _prepare_notebook_html(confirm_load=True):
             confirm_load=confirm_load, container_id=_generate_uid())
 
 
-def _graph_html(graph):
+def _graph_html(graph, config=None):
+    if config is None:
+        config = dict()
     return ENV.get_template(
         'graph.html').render(container_id=_generate_uid(),
-                             data=json.dumps(graph.as_dict()))
+                             data=json.dumps(graph.as_dict()),
+                             config=json.dumps(config))
 
 
 def _generate_uid():
@@ -29,13 +32,13 @@ def prepare_notebook(quiet=False):
     return HTML(_prepare_notebook_html(not quiet))
 
 
-def generate_html(graph, include_scripts=True):
+def generate_html(graph, include_scripts=True, config=None):
     contents = list()
     if include_scripts:
         contents.append(_prepare_notebook_html(False))
-    contents.append(_graph_html(graph))
+    contents.append(_graph_html(graph, config))
     return ''.join(contents)
 
 
-def display_notebook(graph, include_scripts=True):
-    return HTML(generate_html(graph, include_scripts))
+def display_notebook(graph, include_scripts=True, config=None):
+    return HTML(generate_html(graph, include_scripts, config))

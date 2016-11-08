@@ -2,14 +2,19 @@
 var nbgraph = {};
 
 nbgraph.Graph = class {
-    constructor(graph, container_id) {
-        this.running = false;
+    constructor(graph, container_id, config) {
         this.graph = graph;
+        this.config = config;
         this.container = document.getElementById(container_id);
         this.buildElements();
         this.startSigma();
         this.resetGraph();
-        this.toggleForce();
+        if (!(config.startForce === false)) {
+            this.startForce();
+            if ('runForceFor' in config) {
+                setTimeout(() => this.endForce(), config.runForceFor * 1000);
+            }
+        }
     }
 
     buildElements() {
@@ -38,7 +43,7 @@ nbgraph.Graph = class {
 
         /* Inner Graph Container */
         this.graphContainer = document.createElement('div');
-        this.graphContainer.style.height = '400px';
+        this.graphContainer.style.height = this.config.height || '400px';
         outerContainer.appendChild(this.graphContainer);
     }
 
@@ -49,9 +54,9 @@ nbgraph.Graph = class {
         });
         this.sigma.settings({
             edgeColor: 'default',
-            defaultEdgeColor: '#bbb',
+            defaultEdgeColor: this.config.edgeColor || '#bbb',
             nodeColor: 'default',
-            defaultNodeColor: '#800'
+            defaultNodeColor: this.config.nodeColor || '#800'
         });
     }
 
