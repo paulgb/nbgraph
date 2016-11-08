@@ -43,7 +43,7 @@ nbgraph.Graph = class {
 
         /* Inner Graph Container */
         this.graphContainer = document.createElement('div');
-        this.graphContainer.style.height = this.config.height || '400px';
+        this.graphContainer.style.height = (this.config.height || 400) + 'px';
         outerContainer.appendChild(this.graphContainer);
     }
 
