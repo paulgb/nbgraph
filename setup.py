@@ -10,4 +10,7 @@ setup(name='nbgraph',
       author_email='paulgb@gmail.com',
       packages=find_packages(),
       install_requires=['ipython>=5.0.0'],
+      license='MIT',
+      package_data={'nbgraph.client': 'client/*',
+                    'nbgraph.client.js': 'client/js/*'}
 )
