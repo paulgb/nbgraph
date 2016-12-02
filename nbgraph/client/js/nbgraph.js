@@ -1,4 +1,3 @@
-
 var nbgraph = {};
 
 nbgraph.Graph = class {
